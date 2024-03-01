@@ -1,0 +1,42 @@
+.formContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* 100% of the viewport height */
+  }
+  
+  .form {
+    max-width: 300px; /* Three times larger than the original */
+    width: 100%;
+    padding: 100px; /* Adjusted padding for more spacing */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .label {
+    display: block;
+    margin-bottom: 16px; /* Increased margin for more spacing */
+  }
+  
+  .input {
+    width: 100%;
+    padding: 12px; /* Adjusted padding for more spacing */
+    margin-bottom: 20px; /* Increased margin for more spacing */
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Increased border-radius for a rounded look */
+  }
+  
+  .button {
+    background-color: #4caf50;
+    color: white;
+    padding: 15px 20px; /* Adjusted padding for more spacing */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: #45a049;
+  }
+  

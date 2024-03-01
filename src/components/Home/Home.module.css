@@ -1,0 +1,11 @@
+.home {
+    /* Add your styles for the 'home' class */
+    background-color: #f0f0f0;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+  
+  .home h1 {
+    color: #333;
+  }
+  
