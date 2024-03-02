@@ -2,13 +2,16 @@ import React, {useState} from 'react'
 import classes from './Login.module.css'
 
 
-const Login = () => {
+const Login = ({onLogin}) => {
     const [email, setEmail] = useState("");
     const [password, setPassWord] = useState("");
     const [emailIsValid, setEmailIsValid] = useState(false);
     const [passwordIsValid, setPasswordIsValid] = useState(false);
+    const [formIsValid, setFormIsValid] = useState(false);
 
-    const submitHandler = () => {
+    const submitHandler = (e) => {
+        e.preventDefault();
+        onLogin(email, password);
     }
 
   return (
