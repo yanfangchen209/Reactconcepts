@@ -2,7 +2,7 @@ import React from 'react'
 import classes from './Navigation.module.css'
 import {Link} from 'react-router-dom';
 
-export const Navigation = ({isLoggedIn}) => {
+export const Navigation = ({isLoggedIn, onLogout}) => {
   return (
         /**
          * clicking on each link will trigger a full page reload as it navigates to a new URL 
@@ -17,10 +17,10 @@ export const Navigation = ({isLoggedIn}) => {
                     <li><a href="/service">Service</a></li>
                     <li><a href="/new-featured">New & Featured</a></li>
                     <li>
-                        <button>Logout</button>
+                        <button onClick={onLogout}>Logout</button>
                     </li>
                 </ul>}
-    </nav>
+        </nav>
 
   )
 }

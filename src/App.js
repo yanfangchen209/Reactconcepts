@@ -4,7 +4,9 @@ import MainHeader from './components/MainHeader/MainHeader';
 import Login from './components/Login/Login';
 import Home from './components/Home/Home';
 
-/*if don't store log in info and state, when app reload or user leave and come back soon, 
+/*everytime we reload the app everytime, even if we don't log out before reloading, we have to log in again
+if we store log in info in local storage/session (we can see from browser 
+  develper tool-application-local storage/session), when app reload or user leave and come back soon, 
 have to log in again, but we only have to record log info one time when log in, so useeffect is a good choice
 */
 function App() {

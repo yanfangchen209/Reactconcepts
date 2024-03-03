@@ -3,8 +3,8 @@ import classes from './Home.module.css'
 
 export const Home = () => {
   return (
-    <div className='classes.home'>
-        <h1>Welcome back!</h1>
+    <div className={classes.home}>
+        <h1>This is home page! Welcome</h1>
     </div>
   )
 }
