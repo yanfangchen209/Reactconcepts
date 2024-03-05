@@ -47,6 +47,12 @@
   text-align: center;
 }
 
+.errorMessage {
+  color: #ff6347; /* Tomato color for error messages */
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
 @media (min-width: 768px) {
   .control {
     align-items: center;

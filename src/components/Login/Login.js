@@ -30,6 +30,12 @@ const Login = ({onLogin}) => {
      // const [emailIsValid, setEmailIsValid] = useState(false);
      //const [enteredPassword, setEnteredPassWord] = useState("");
      //const [passwordIsValid, setPasswordIsValid] = useState(false);
+
+     /**In many cases, using null for the initial state of isValid is a good practice, 
+      * especially if you want to differentiate between the initial state and an intentionally
+      *  validated state. For example, you might want to display error messages only after the
+      *  user interacts with the input, and using null helps you identify that initial untouched 
+      * state. */
      const [emailState, dispatchEmail] = useReducer(emailReducer, {
         value: '',
         isValid: null,
@@ -47,24 +53,35 @@ const Login = ({onLogin}) => {
     check form validity, everytime user input one more char/number, clear the timer, set a new timer, if user
     paused more than 500ms, check form validity, otherwise clear timer.
     */
+    /** using object destructuring to extract the isValid property from the emailState 
+    object and rename it to emailIsValid.
+    object destructuring can be used to avoid unnecessary effect executions in a React component
+     by comparing the extracted values with the previous values. This is often done using the 
+     technique of extracting values from the state using object destructuring and then using 
+     those extracted values as dependencies in the useEffect dependency array.by extract emailIsValid and passwordIsValid, whenever the value changes, the validity 
+     did not change, this useEffect will not rerun */
+    const { isValid: emailIsValid } = emailState;
+    const { isValid: passwordIsValid } = passwordState;
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     const identifier = setTimeout(() => {
-    //         console.log("Checking form validity!");
-    //         setFormIsValid(enteredEmail.includes('@') && enteredPassword.trim().length >= 8 );
-    //     }, 500);
-    //http request execute only one time
+        const identifier = setTimeout(() => {
+            console.log("Checking form validity!");
+            setFormIsValid(emailIsValid && passwordIsValid);
+        }, 500);
+   // http request execute only one time
         
-    // /*clean up function, it runs before every useEffect executes except the very first
-    // time useEffect runs.(the first time useEffect runs, cleanup function doesn't run). 
-    // In addition, The cleanup function is run whenever the component where the useEffect() is
-    //  specified unmounts from the DOM(component removed or hidden) */ 
-    //  return () => {
-    //     console.log("CLEAN UP");
-    //     clearTimeout(identifier);
-    //  }
-    // }, [enteredEmail, enteredPassword])
+    /*clean up function, it runs before every useEffect executes except the very first
+    time useEffect runs.(the first time useEffect runs, cleanup function doesn't run). 
+    In addition, The cleanup function is run whenever the component where the useEffect() is
+     specified unmounts from the DOM(component removed or hidden) 
+.*/ 
+     return () => {
+        console.log("CLEAN UP");
+        clearTimeout(identifier);
+     }
+    }, [emailIsValid, passwordIsValid])
+
 
     const emailChangeHandler = (event) => {
         dispatchEmail({ type: 'USER_INPUT', val: event.target.value });
@@ -109,6 +126,7 @@ const Login = ({onLogin}) => {
                 onChange={emailChangeHandler}
                 onBlur={validateEmailHandler}
               />
+            {!emailState.isValid && <p className={classes.errorMessage}>Invalid email address</p>}
             </div>
             <div
               className={`${classes.control} ${
