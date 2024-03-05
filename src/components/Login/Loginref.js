@@ -1,10 +1,7 @@
-import React, {useState, useEffect, useReducer} from 'react'
+import React, {useState, useEffect, useReducer, useRef} from 'react'
 import classes from './Login.module.css'
 import Card from '../UI/Card';
 
-/*validate user input when lose focus(onBlur), useEffect() run when dependencies enteredEmail or enteredPassword 
-change 
-*/
 
 const emailReducer = (state, action) => {
     if (action.type === 'USER_INPUT') {
@@ -47,6 +44,10 @@ const Login = ({onLogin}) => {
       });
 
     const [formIsValid, setFormIsValid] = useState(false);
+
+    const emailInputRef = useRef();
+    const passwordInputRef = useRef();
+
 
     /*debouncing: instead of doing user input every stroke, we make input validation 
     when a user stops typing for some time like 500ms(make a pause during typing).
@@ -123,6 +124,7 @@ const Login = ({onLogin}) => {
               <input
                 type="email"
                 id="email"
+                ref={emailInputRef}
                 value={emailState.value}
                 onChange={emailChangeHandler}
                 onBlur={validateEmailHandler}
@@ -138,6 +140,7 @@ const Login = ({onLogin}) => {
               <input
                 type="password"
                 id="password"
+                ref={passwordInputRef}
                 value={passwordState.value}
                 onChange={passwordChangeHandler}
                 onBlur={validatePasswordHandler}
